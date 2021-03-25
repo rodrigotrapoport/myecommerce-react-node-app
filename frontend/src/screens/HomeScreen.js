@@ -7,16 +7,15 @@ import { listProducts } from '../actions/productActions';
 
 export default function HomeScreen () { 
   const dispatch = useDispatch();
-  const productList = useSelector((state)=>state.productList);
-  const {loading, error, products} = productList;
+  const productList = useSelector((state) => state.productList);
+  const { loading, error, products } = productList;
 
-  useEffect(()=> {
+  useEffect(() => {
     dispatch(listProducts());
-  },[])
-
+  },[dispatch]); 
     return (
-      <div>
-        {loading ? (
+    <div>
+      {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
@@ -27,6 +26,6 @@ export default function HomeScreen () {
           ))}
         </div>
       )}
-      </div>
-    ); 
+    </div>
+  ); 
 }
